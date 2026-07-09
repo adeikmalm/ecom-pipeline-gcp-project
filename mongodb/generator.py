@@ -29,7 +29,7 @@ client = MongoClient(MONGO_URI)
 db = client[DB_NAME]
 collection = db[COLLECTION_NAME]
 
-# 1. FETCH MASTER DATA DARI FAKESTORE API
+# 1. fetch master data
 
 def fetch_master_data():
     print("Mengambil Master Data dari FakeStore API...")
@@ -42,7 +42,7 @@ def fetch_master_data():
         print(f"Gagal mengambil API: {e}")
         return [], []
 
-# 2. FUNGSI GENERATE TRANSAKSI (DENGAN ANOMALI)
+# 2. generate transactions including anomaly
 def generate_cart_event(users, products):
     now_utc = datetime.now(timezone.utc)
     
@@ -50,12 +50,12 @@ def generate_cart_event(users, products):
     gmt_create = now_utc.strftime("%Y-%m-%d %H:%M:%S")
     dt = int(now_utc.strftime("%Y%m%d"))
     
-    # Pilih user dan produk secara acak
+    # pick users and products randomly
     selected_user = random.choice(users)
     num_items = random.randint(1, 4)
     selected_products = random.sample(products, num_items)
     
-    # Format keranjang standar (Data Bersih)
+    # cleaned charts data
     cart_items = []
     for p in selected_products:
         cart_items.append({
@@ -74,26 +74,26 @@ def generate_cart_event(users, products):
         "is_anomalous": False # Flag bawaan
     }
 
-    # INJEKSI MESSY DATA (Probabilitas 15%)
+    # messy data injection around 15%
     if random.random() < 0.15:
         payload["is_anomalous"] = True
         anomali_tipe = random.choice(["missing_user", "string_price", "negative_qty"])
         
         if anomali_tipe == "missing_user":
-            # Anomali 1: User ID tiba-tiba Null
+            # Anomaly 1: User ID Null
             payload["user_id"] = None 
             
         elif anomali_tipe == "string_price":
-            # Anomali 2: Harga tiba-tiba berubah jadi string kacau
+            # Anomaly 2: price in string format
             payload["items"][0]["price"] = f"{payload['items'][0]['price']} USD"
             
         elif anomali_tipe == "negative_qty":
-            # Anomali 3: Kuantitas minus (indikasi error sistem)
+            # Anomaly 3: minus quantity
             payload["items"][0]["quantity"] = random.randint(-5, -1)
 
     return payload
 
-# 3. MAIN LOOP (EKSEKUSI TERUS-MENERUS)
+# 3. main loop
 def main():
     users, products = fetch_master_data()
     
@@ -101,25 +101,25 @@ def main():
         print("Data master kosong, program dihentikan.")
         return
 
-    # 1. TAMBAHAN BARU: Insert Master Data ke MongoDB
+    # 1. insert master data
     print("Menyimpan data master ke MongoDB...")
-    # Menghapus data lama (jika ada) untuk mencegah duplikasi ID saat script dijalankan ulang
+    # dete old data if there's any to prevent duplication
     db.users.delete_many({}) 
     db.products.delete_many({})
     
-    # Menyimpan data baru ke collection terpisah
+    # save new data into separated collection
     db.users.insert_many(users)
     db.products.insert_many(products)
     print("Data master berhasil disimpan ke collection 'users' dan 'products'.")
 
-    # 2. EKSEKUSI TRANSAKSI
+    # 2. transactions execution
     print("Memulai Generator Transaksi Real-Time...")
     print("Tekan CTRL+C untuk menghentikan program.\n")
     
     try:
         while True:
             event = generate_cart_event(users, products)
-            collection.insert_one(event) # collection ini merujuk ke 'carts'
+            collection.insert_one(event) # charts collection 
             
             if event["is_anomalous"]:
                 print(f"[ANOMALI] Transaksi {event['transaction_id']} di-insert! (Data kotor)")
