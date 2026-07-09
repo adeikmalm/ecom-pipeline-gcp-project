@@ -6,20 +6,16 @@ WITH source_data AS (
 
 flattened_data AS (
     SELECT
-        -- STANDAR GLOBAL: Semua ID di-cast menjadi STRING
         CAST(transaction_id AS STRING) AS cart_id,
         CAST(user_id AS STRING) AS user_id,
         CAST(item.product_id AS STRING) AS product_id,
         
         is_anomalous,
         
-        -- Waktu transaksi asli
         gmt_create AS transaction_date,
         
-        -- Waktu masuk Datalake
         PARSE_DATE('%Y%m%d', CAST(dt AS STRING)) AS batch_ingestion_date,
         
-        -- Mengambil metrik yang bisa dihitung (Integer/Float)
         item.quantity AS item_quantity,
         CAST(REPLACE(item.price, ' USD', '') AS FLOAT64) AS item_price
         
@@ -30,13 +26,12 @@ flattened_data AS (
 deduplicated AS (
     SELECT
         *,
-        -- Menghapus duplikasi baris produk per transaksi
+        -- drop duplicate per transaction
         ROW_NUMBER() OVER(
             PARTITION BY cart_id, product_id 
             ORDER BY batch_ingestion_date DESC
         ) AS row_num
     FROM flattened_data
-    -- Membuang anomali kuantitas negatif
     WHERE item_quantity > 0
 )
 
