@@ -13,7 +13,7 @@ The architecture applies a decoupled approach, ensuring that data ingestion, sto
 ![System Architecture](architecture.png)
 
 **Brief Workflow:**
-1. **Source & Ingestion**: Real-time e-commerce data (simulated via FakeStore API) is transacted into a **MongoDB** database. **Apache Airflow** periodically orchestrates the extraction of this data and loads it as raw JSON into the cloud data warehouse.
+1. **Source & Ingestion**: Real-time e-commerce data simulated via API is transacted into a **MongoDB** database. **Apache Airflow** periodically orchestrates the extraction of this data and loads it as raw JSON into the cloud data warehouse.
 2. **Storage**: **Google BigQuery** acts as the central data warehouse, handling the raw landing zone.
 3. **Transformation & Modeling**: **dbt Core** takes over within BigQuery to unpack nested arrays, cleanse anomalies, cast data types, and model the final Data Marts using the Medallion Architecture (Bronze, Silver, Gold).
 
