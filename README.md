@@ -1,12 +1,3 @@
-Gambarnya "pecah" (broken link) karena di kode README sebelumnya, jalurnya (*path*) disetel untuk mencari ke dalam folder `assets/` (`assets/architecture.png`). Karena kamu menaruh fotonya langsung di folder utama (main directory), GitHub jadi kebingungan mencari folder tersebut.
-
-Solusinya sangat mudah. Di kode yang baru ini, saya sudah mengubah jalurnya menjadi `![System Architecture](architecture.png)`. *(Pastikan nama file fotomu benar-benar `architecture.png` atau sesuaikan ekstensinya jika `.jpg`)*.
-
-Sesuai permintaanmu, saya sudah merombak total struktur `README.md` ini. Bagian tutorial instalasi sudah dibuang, dan fokus tulisan (*copywriting*) diubah 100% menjadi **Project Showcase** untuk pamer portofolio. Penjelasan arsitektur dibuat lebih padat (*brief*), dan bagian *tools* langsung menyorot teknologi inti yang kamu gunakan.
-
-Berikut adalah versi finalnya yang siap di-*copy-paste*:
-
-```markdown
 # End-to-End E-Commerce Data Pipeline: From OLTP to Analytics Data Mart
 
 ## 1. Project Objective & Business Value
@@ -73,5 +64,3 @@ The final Star Schema exposes the following ready-to-use metrics for downstream 
 - **Idempotent Design**: Ingestion pipelines are designed with `WRITE_TRUNCATE` dispositions for master data to ensure safe reruns (backfilling) without duplication.
 - **Compute Optimization**: Handled complex one-to-many JSON relationships directly in the data warehouse using SQL, avoiding heavy Python-based transformations in memory.
 - **Parallel Processing**: dbt executions are configured with multi-threading (`threads: 4`) to compile and build staging and mart models simultaneously, significantly reducing pipeline execution time.
-
-```
