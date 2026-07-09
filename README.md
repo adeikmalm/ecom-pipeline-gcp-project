@@ -53,7 +53,7 @@ The presentation layer consisting of physical `Tables` optimized for Business In
 ---
 
 ## 5. Key Analytics Metrics Delivered
-The final Star Schema exposes the following ready-to-use metrics for downstream BI tools (e.g., Power BI, Looker):
+The final Star Schema exposes the following ready-to-use metrics for downstream BI tools (e.g., Power BI, Looker, and Tableau):
 - **Total Revenue**: Cleansed financial accumulation of sold items.
 - **Total Orders**: Volume of unique cart transactions.
 - **Total Active Buyers**: Count of unique customers transacting per day.
