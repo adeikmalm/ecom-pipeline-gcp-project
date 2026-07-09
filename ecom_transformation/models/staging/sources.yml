@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: bronze_layer
+    database: 	ecom-data-pipeline-501504 # Ganti dengan Project ID GCP
+    tables:
+      - name: raw_carts
+      - name: raw_users
+      - name: raw_products

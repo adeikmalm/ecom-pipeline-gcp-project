@@ -1,0 +1,23 @@
+# Kredensial GCP dan Cloud (SANGAT RAHASIA)
+*gcp-key.json
+*.json
+
+# Environment Variables lokal
+.env
+*.env
+
+# File Sampah / Temp dari Airflow lokal
+dags/temp_*.json
+logs/
+.pytest_cache/
+
+# dbt Artifacts (Tidak perlu di-push karena dbt run akan membuat ulang secara dinamis)
+ecom_transformation/target/
+ecom_transformation/logs/
+ecom_transformation/dbt_packages/
+
+# Python Virtual Environment
+venv/
+.venv/
+__pycache__/
+*.pyc

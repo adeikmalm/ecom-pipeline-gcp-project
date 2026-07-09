@@ -1,0 +1,18 @@
+[2026-07-07T15:20:12.916+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-07-07T15:20:12.973+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: mongo_to_bq_dag.load_products manual__2026-07-07T15:20:00.747536+00:00 [queued]>
+[2026-07-07T15:20:12.995+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: mongo_to_bq_dag.load_products manual__2026-07-07T15:20:00.747536+00:00 [queued]>
+[2026-07-07T15:20:12.998+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-07-07T15:20:13.026+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): load_products> on 2026-07-07 15:20:00.747536+00:00
+[2026-07-07T15:20:13.043+0000] {standard_task_runner.py:63} INFO - Started process 171 to run task
+[2026-07-07T15:20:13.049+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'mongo_to_bq_dag', 'load_products', 'manual__2026-07-07T15:20:00.747536+00:00', '--job-id', '42', '--raw', '--subdir', 'DAGS_FOLDER/mongo_to_bq_dag.py', '--cfg-path', '/tmp/tmp80y2ydod']
+[2026-07-07T15:20:13.052+0000] {standard_task_runner.py:91} INFO - Job 42: Subtask load_products
+[2026-07-07T15:20:13.147+0000] {task_command.py:426} INFO - Running <TaskInstance: mongo_to_bq_dag.load_products manual__2026-07-07T15:20:00.747536+00:00 [running]> on host b66a75308c99
+[2026-07-07T15:20:13.617+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='mongo_to_bq_dag' AIRFLOW_CTX_TASK_ID='load_products' AIRFLOW_CTX_EXECUTION_DATE='2026-07-07T15:20:00.747536+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-07-07T15:20:00.747536+00:00'
+[2026-07-07T15:20:13.619+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-07-07T15:20:13.620+0000] {logging_mixin.py:188} INFO - Loading data dari /opt/***/dags/temp_products.json ke ecom-data-pipeline-51504.bronze_layer.raw_products
+[2026-07-07T15:20:13.621+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-07-07T15:20:13.623+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-07-07T15:20:13.644+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=mongo_to_bq_dag, task_id=load_products, run_id=manual__2026-07-07T15:20:00.747536+00:00, execution_date=20260707T152000, start_date=20260707T152012, end_date=20260707T152013
+[2026-07-07T15:20:13.706+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-07-07T15:20:13.726+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-07-07T15:20:13.729+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

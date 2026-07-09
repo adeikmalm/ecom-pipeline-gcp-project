@@ -1,0 +1,21 @@
+[2026-07-06T13:26:51.695+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-07-06T13:26:51.707+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: mongo_to_bigquery_pipeline.extract_from_mongodb manual__2026-07-06T13:26:49.315952+00:00 [queued]>
+[2026-07-06T13:26:51.713+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: mongo_to_bigquery_pipeline.extract_from_mongodb manual__2026-07-06T13:26:49.315952+00:00 [queued]>
+[2026-07-06T13:26:51.713+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-07-06T13:26:51.724+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): extract_from_mongodb> on 2026-07-06 13:26:49.315952+00:00
+[2026-07-06T13:26:51.731+0000] {standard_task_runner.py:63} INFO - Started process 1557 to run task
+[2026-07-06T13:26:51.734+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'mongo_to_bigquery_pipeline', 'extract_from_mongodb', 'manual__2026-07-06T13:26:49.315952+00:00', '--job-id', '24', '--raw', '--subdir', 'DAGS_FOLDER/mongo_to_bq_dag.py', '--cfg-path', '/tmp/tmpwd990nvh']
+[2026-07-06T13:26:51.736+0000] {standard_task_runner.py:91} INFO - Job 24: Subtask extract_from_mongodb
+[2026-07-06T13:26:51.776+0000] {task_command.py:426} INFO - Running <TaskInstance: mongo_to_bigquery_pipeline.extract_from_mongodb manual__2026-07-06T13:26:49.315952+00:00 [running]> on host b66a75308c99
+[2026-07-06T13:26:51.843+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='mongo_to_bigquery_pipeline' AIRFLOW_CTX_TASK_ID='extract_from_mongodb' AIRFLOW_CTX_EXECUTION_DATE='2026-07-06T13:26:49.315952+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-07-06T13:26:49.315952+00:00'
+[2026-07-06T13:26:51.844+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-07-06T13:26:51.845+0000] {logging_mixin.py:188} INFO - Mulai koneksi ke MongoDB...
+[2026-07-06T13:26:51.854+0000] {base.py:84} INFO - Using connection ID 'mongo_conn' for task execution.
+[2026-07-06T13:26:51.971+0000] {logger.py:96} INFO - {"message": "Waiting for suitable server to become available", "selector": "Primary()", "operation": "find", "topologyDescription": "<TopologyDescription id: 6a4bad1bf53376558b522918, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-u3q28i0-shard-00-00.cpdvfd0.mongodb.net', 27017) server_type: Unknown, rtt: None>, <ServerDescription ('ac-u3q28i0-shard-00-01.cpdvfd0.mongodb.net', 27017) server_type: Unknown, rtt: None>, <ServerDescription ('ac-u3q28i0-shard-00-02.cpdvfd0.mongodb.net', 27017) server_type: Unknown, rtt: None>]>", "clientId": {"$oid": "6a4bad1bf53376558b522918"}, "remainingTimeMS": 29}
+[2026-07-06T13:26:52.440+0000] {logging_mixin.py:188} INFO - Ekstraksi selesai. Data disimpan di /opt/***/dags/temp_extracted_data.json
+[2026-07-06T13:26:52.441+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-07-06T13:26:52.441+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-07-06T13:26:52.450+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=mongo_to_bigquery_pipeline, task_id=extract_from_mongodb, run_id=manual__2026-07-06T13:26:49.315952+00:00, execution_date=20260706T132649, start_date=20260706T132651, end_date=20260706T132652
+[2026-07-06T13:26:52.509+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-07-06T13:26:52.530+0000] {taskinstance.py:3498} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-07-06T13:26:52.534+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
