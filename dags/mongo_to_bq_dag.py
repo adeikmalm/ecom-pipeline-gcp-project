@@ -5,7 +5,7 @@ from airflow.providers.google.cloud.hooks.bigquery import BigQueryHook
 from datetime import datetime
 import json
 
-# Daftar collection yang akan ditarik
+# collections list
 COLLECTIONS = ["carts", "users", "products"]
 PROJECT_ID = "ecom-data-pipeline-501504" # Sesuaikan dengan Project ID GCP Anda
 DATASET_ID = "bronze_layer"
@@ -33,26 +33,25 @@ def load_to_bq(collection_name, **context):
     temp_path = f"/opt/airflow/dags/temp_{collection_name}.json"
     table_id = f"{PROJECT_ID}.{DATASET_ID}.raw_{collection_name}"
     
-    # Membaca file gcp-key.json yang ada di dalam folder dags Docker
     key_path = "/opt/airflow/dags/gcp-key.json" 
     
     print(f"🚀 Memulai upload data dari {temp_path} ke {table_id}...")
 
-    # Inisialisasi koneksi langsung ke BigQuery menggunakan file JSON rahasiamu
+    # initialize directly to bigquery thru json
     client = bigquery.Client.from_service_account_json(key_path)
 
-    # Konfigurasi upload data
+    # data upload configuration
     job_config = bigquery.LoadJobConfig(
         source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON,
         autodetect=True, # Biarkan BQ menebak tipe datanya
         write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE, # Timpa data lama setiap kali narik baru
     )
 
-    # Mengeksekusi pengiriman data
+    # data sent execution
     with open(temp_path, "rb") as source_file:
         job = client.load_table_from_file(source_file, table_id, job_config=job_config)
 
-    job.result()  # Menunggu sampai proses upload BQ selesai 100%
+    job.result()  
     print(f"✅ Sukses! Sebanyak {job.output_rows} baris berhasil dimuat ke {table_id}")
 
 
