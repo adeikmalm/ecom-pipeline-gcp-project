@@ -11,7 +11,8 @@ This project is a **Data Engineering Portfolio Showcase** demonstrating the desi
 ## 2. System Architecture
 The architecture applies a decoupled approach, ensuring that data ingestion, storage, and transformation are handled by dedicated, purpose-built systems.
 
-<img width="5206" height="5494" alt="architecture" src="https://github.com/user-attachments/assets/4da980cf-5377-4579-9d57-5b4722a9b71b" />
+<img width="8192" height="1736" alt="Data Ingestion Pipeline" src="https://github.com/user-attachments/assets/436faf5d-7c32-4f4a-8667-c249f3537f8e" />
+
 
 **Brief Workflow:**
 1. **Source & Ingestion**: Real-time e-commerce data simulated via API is transacted into a **MongoDB** database. **Apache Airflow** periodically orchestrates the extraction of this data and loads it as raw JSON into the cloud data warehouse.
