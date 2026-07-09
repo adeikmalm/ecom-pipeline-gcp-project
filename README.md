@@ -25,7 +25,7 @@ This project leverages the following core technologies to build a robust pipelin
 - **Python 3.11**: Custom data generation and API integration (`requests`, `pymongo`).
 - **MongoDB**: Operational NoSQL database (OLTP) simulating the e-commerce backend.
 - **Apache Airflow**: Workflow orchestration and automated data ingestion (deployed via Docker).
-- **Google BigQuery**: Serverless Cloud Data Warehouse handling large-scale data processing (`us-west1`).
+- **Google BigQuery**: Serverless Cloud Data Warehouse handling large-scale data processing.
 - **dbt Core (v1.11)**: SQL-first transformation, data testing, and data modeling engine.
 
 ---
