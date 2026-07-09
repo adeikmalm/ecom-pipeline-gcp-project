@@ -1,3 +1,4 @@
+
 # End-to-End E-Commerce Data Pipeline: From OLTP to Analytics Data Mart
 
 ## 1. Project Objective & Business Value
@@ -10,7 +11,7 @@ This project is a **Data Engineering Portfolio Showcase** demonstrating the desi
 ## 2. System Architecture
 The architecture applies a decoupled approach, ensuring that data ingestion, storage, and transformation are handled by dedicated, purpose-built systems.
 
-![System Architecture](architecture.png)
+<img width="5206" height="5494" alt="architecture" src="https://github.com/user-attachments/assets/4da980cf-5377-4579-9d57-5b4722a9b71b" />
 
 **Brief Workflow:**
 1. **Source & Ingestion**: Real-time e-commerce data simulated via API is transacted into a **MongoDB** database. **Apache Airflow** periodically orchestrates the extraction of this data and loads it as raw JSON into the cloud data warehouse.
