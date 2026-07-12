@@ -11,8 +11,7 @@ This project is a **Data Engineering Portfolio Showcase** demonstrating the desi
 ## 2. System Architecture
 The architecture applies a decoupled approach, ensuring that data ingestion, storage, and transformation are handled by dedicated, purpose-built systems.
 
-<img width="8192" height="1659" alt="Data Ingestion Pipeline for-2026-07-09-022922" src="https://github.com/user-attachments/assets/5b05ca55-39db-480a-bd24-d87b183f244a" />
-
+<img width="1953" height="805" alt="data architecture" src="https://github.com/user-attachments/assets/fd2c842a-1062-4d12-8e3b-116ef2dea0e8" />
 
 
 **Brief Workflow:**
